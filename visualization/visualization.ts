@@ -10,3 +10,5 @@ export default class OTChartFactory{
     }
   }
 }
+
+console.log(OTChartFactory)

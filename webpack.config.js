@@ -15,7 +15,10 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {
+    libraryTarget: 'var',
+    library: 'OTChartFactory',
     filename: 'visualization.js',
     path: path.resolve(__dirname, 'built')
   }
+  
 };
