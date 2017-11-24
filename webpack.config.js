@@ -1,7 +1,9 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: './visualization/visualization.ts',
+  plugins: [ new UglifyJsPlugin() ],
   module: {
     rules: [
       {

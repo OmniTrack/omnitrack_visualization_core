@@ -5,10 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="built/visualization.js"></script>
-    <script language="JavaScript">
-        console.log(OTChartFactory);
-        console.log(OTChartFactory.OTChartFactory.makeChart);
-    </script>
+    <style type="text/css">
+      *{
+        margin:0px;
+        padding:0px;
+      }
+    </style>
 </head>
 <body>
     This is a chart view.
@@ -16,5 +18,14 @@
     <canvas id="chart" width="600" height="400">
 
     </canvas>
+
+    <script language="JavaScript">
+      var chart = OTVis.OTChartFactory.makeChart("horizontal-bar");
+      chart.addOnResizedListener(function(width, height){
+        console.log(width + ", " + height);
+      })
+      chart.setData({data: [{label: "A", value: 5, category: "a"}, {label: "B", value: 3, category: "b"}]});
+      chart.updateChartToCanvas("chart")
+  </script>
 </body>
 </html>
