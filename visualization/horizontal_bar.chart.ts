@@ -1,5 +1,5 @@
 import OTChart from './ot_chart'
-import Chart from 'chart.js'
+import {Chart} from 'chart.js'
 import IBarChartDataType from './datatypes/barchart.datatype'
 export default class HorizontalBarChart extends OTChart<IBarChartDataType>{
 
@@ -7,7 +7,7 @@ export default class HorizontalBarChart extends OTChart<IBarChartDataType>{
     
   }
 
-  updateChartToCanvas(canvasContext: string | CanvasRenderingContext2D | HTMLCanvasElement | ArrayLike<CanvasRenderingContext2D | HTMLCanvasElement>) {
+  updateChartToCanvas(canvasContext: string | CanvasRenderingContext2D | HTMLCanvasElement | ArrayLike<CanvasRenderingContext2D | HTMLCanvasElement>):void {
     const chart = new Chart(canvasContext, {
       type: "bar",
       data: {
