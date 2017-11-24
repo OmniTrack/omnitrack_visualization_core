@@ -16,7 +16,7 @@ module.exports = {
   },
   output: {
     libraryTarget: 'var',
-    library: 'OTChartFactory',
+    library: 'OTVis',
     filename: 'visualization.js',
     path: path.resolve(__dirname, 'built')
   }
