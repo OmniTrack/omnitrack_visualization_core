@@ -1,0 +1,40 @@
+{
+  "name": "@omnitrack/visualization.core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muclipse/omnitrack_visualization_core.git"
+  },
+  "keywords": [
+    "visualization",
+    "mobile"
+  ],
+  "author": "Young-Ho Kim <yhkim@hcil.snu.ac.kr>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/muclipse/omnitrack_visualization_core/issues"
+  },
+  "homepage": "https://github.com/muclipse/omnitrack_visualization_core#readme",
+  "dependencies": {
+    "@types/chart.js": "^2.7.0",
+    "@types/chartjs": "0.0.31",
+    "chart.js": "^2.7.1",
+    "gulp": "^3.9.1",
+    "gulp-include": "^2.3.1",
+    "gulp-typescript": "^3.2.3",
+    "require.js": "^1.0.0",
+    "requirejs": "^2.3.5",
+    "typescript": "^2.6.1"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1"
+  }
+}
