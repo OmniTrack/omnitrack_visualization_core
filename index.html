@@ -15,8 +15,11 @@
 <body>
     This is a chart view.
     <div id="text">This should be replaced.</div>
-    <canvas id="chart" width="600" height="400">
+    <canvas id="horizontalBar">
 
+    </canvas>
+
+    <canvas id="timeNumber">
     </canvas>
 
     <script language="JavaScript">
@@ -25,7 +28,12 @@
         console.log(width + ", " + height);
       })
       chart.setData({data: [{label: "A", value: 5, category: "a"}, {label: "B", value: 3, category: "b"}]});
-      chart.updateChartToCanvas("chart")
+      chart.updateChartToCanvas("horizontalBar")
+
+      var scatter = OTVis.OTChartFactory.makeChart("time-number-plot");
+      scatter.setData({"range":{"from":1510412400000, "to":1511622000000, "timezone":"Asia/Seoul"}, "labels":{"t":"Drank at", "y":"Caffeine"}, "data":[{"t":1510497667429, "y": 1.0}, {"t":1510536641571, "y": 1.0}, {"t":1510548345847, "y": 3.0}, {"t":1510563900379, "y": 2.0}, {"t":1510632198156, "y": 3.0}, {"t":1510939730997, "y": 2.0}, {"t":1510939732807, "y": 2.0}, {"t":1510977848237, "y": 3.0}, {"t":1511159510218, "y": 2.799999952316284}, {"t":1511241611190, "y": 2.0}, {"t":1511329821673, "y": 3.0}]})
+      scatter.updateChartToCanvas("timeNumber")
+
   </script>
 </body>
 </html>

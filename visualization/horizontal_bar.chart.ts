@@ -1,6 +1,6 @@
 import OTChart from './ot_chart'
 import { Chart, LinearTickOptions } from 'chart.js'
-import IBarChartDataType from './datatypes/barchart.datatype'
+import IBarChartDataType from './datatypes/bar-chart.datatype'
 export default class HorizontalBarChart extends OTChart<IBarChartDataType>{
 
 
