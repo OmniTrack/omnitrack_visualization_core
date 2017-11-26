@@ -2,10 +2,13 @@ import {Chart} from 'chart.js'
 import OTChart from './ot_chart'
 import HorizontalBarChart from './horizontal_bar.chart';
 import TimeNumberPlot from './time-number-plot.chart';
+import DurationHeatmap from './duration-heatmap.chart';
+import { registerDurationChart } from './chartjs-customs/duration-heatmap';
 
 export class OTChartFactory{
   static readonly TYPE_HORIZONTAL_CATEGORICAL_BAR = "horizontal-bar"
   static readonly TYPE_TIME_NUMBER_PLOT = "time-number-plot"
+  static readonly TYPE_DURATION_HEATMAP = "duration-value-plot"
   
   static overrideOptions?: OTChartDefaultOptions
 
@@ -16,6 +19,9 @@ export class OTChartFactory{
 
       case this.TYPE_TIME_NUMBER_PLOT:
       return new TimeNumberPlot(OTChartFactory.overrideOptions)
+
+      case this.TYPE_DURATION_HEATMAP:
+      return new DurationHeatmap(OTChartFactory.overrideOptions)
     }
   }
 
@@ -32,3 +38,5 @@ export class OTChartFactory{
 export interface OTChartDefaultOptions{
   elementMainColor?: string 
 }
+
+registerDurationChart()

@@ -9,6 +9,7 @@ export default class HorizontalBarChart extends OTChart<IBarChartDataType>{
   }
 
   onUpdateChartToCanvas(canvasContext: HTMLCanvasElement): void {
+    canvasContext.height = (canvasContext.width/12) * this.data.data.length
     const chart = new Chart(canvasContext, {
       type: "horizontalBar",
       options: {
