@@ -33,7 +33,9 @@ export default class DurationHeatmap extends OTChart<IDurationPointDataType>{
   }
 
   onUpdateChartToCanvas(canvasContext: HTMLCanvasElement): void {
-    canvasContext.height = (canvasContext.width/13) * this.data.dates.length
+
+    canvasContext.height = (canvasContext.width/13) * Math.max(0.75,(1-0.01*this.data.dates.length)) * (this.data.dates.length + 1.5)
+
     const chart = new Chart(canvasContext, {
       type: "durationHeatmap",
       options:{
@@ -56,16 +58,19 @@ export default class DurationHeatmap extends OTChart<IDurationPointDataType>{
                 result = _s.pad(hourOfDay, 2, '0') + ":00"
               }
               else result = _s.pad(hourOfDay, 2, '0') + ":" + _s.pad(minute, 2, '0')
-              console.log(result)
               return result
             }
           } as LinearTickOptions
         }],
         yAxes: [
           { 
+            type: 'category',
             gridLines:{
               display: false, 
               drawBorder: true
+            },
+            ticks: {
+              reverse: true
             }
           }
         ]
