@@ -21,6 +21,7 @@ export default class TimeNumberPlot extends OTChart<ITimeNumberPlotDataType>{
     super(options);
     
     this.timeTicks.minRotation = 45
+    this.timeTicks.padding = 5
     this.timeOptions.gridLines.offsetGridLines = true
   }
 
@@ -73,13 +74,20 @@ export default class TimeNumberPlot extends OTChart<ITimeNumberPlotDataType>{
             xAxes: [{
                 type: 'time',
                 ticks: this.timeTicks,
+                gridLines: {
+                  tickMarkLength: 10
+                },
                 time: this.timeOptions
             }],
             yAxes: [{
               type: 'linear',
               ticks: {
+                padding: 5,
                 beginAtZero: true,
-              } as LinearTickOptions
+              } as LinearTickOptions,
+              gridLines:{
+                tickMarkLength: 0
+              }
             }]
           }
         }

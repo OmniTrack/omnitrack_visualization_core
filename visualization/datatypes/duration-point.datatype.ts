@@ -4,6 +4,6 @@ export default interface IDurationPointDataType{
   data: Array<DurationPoint>
 }
 
-export interface DurationPoint{i:number, fromRatio:number, toRatio:number, value: number, valueRatio?: number}
+export interface DurationPoint{i:number, fromRatio:number, toRatio:number, value: number, valueRatio?: number, cutL:boolean, cutR: boolean}
 
 export interface DateOrientedPointType{startDate:number, dateIndex: number, d:Array<DurationPoint>}

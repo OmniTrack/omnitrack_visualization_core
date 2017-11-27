@@ -47,11 +47,18 @@ export default class DurationHeatmap extends OTChart<IDurationPointDataType>{
         xAxes: [{
           position: "top",
           ticks:{
-            stepSize: 1/12,
+            stepSize: 1/24,
             padding: 2,
             callback: function(value, index, values) {
-              const hourOfDay = Math.floor(value * 24);
-              const minute = Math.round((value * 24 - hourOfDay)*60)
+              var hourOfDay = Math.floor(value * 24);
+              var minute = Math.round((value * 24 - hourOfDay)*60)
+              
+              if(minute==60)
+              {
+                hourOfDay++
+                minute = 0
+              }
+
               var result
               if(minute<1)
               {
@@ -60,17 +67,24 @@ export default class DurationHeatmap extends OTChart<IDurationPointDataType>{
               else result = _s.pad(hourOfDay, 2, '0') + ":" + _s.pad(minute, 2, '0')
               return result
             }
-          } as LinearTickOptions
+          } as LinearTickOptions,
+          gridLines: {
+            drawTicks: true,
+            tickMarkLength: 2,
+            drawBorder: false,
+          }
         }],
         yAxes: [
           { 
             type: 'category',
             gridLines:{
               display: false, 
-              drawBorder: true
+              drawBorder: true,
+              tickMarkLength: 2,
             },
             ticks: {
-              reverse: true
+              padding:5,
+              reverse: true,
             }
           }
         ]

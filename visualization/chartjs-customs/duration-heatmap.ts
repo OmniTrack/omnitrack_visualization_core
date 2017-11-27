@@ -1,10 +1,11 @@
 import { Chart, LinearTickOptions, LinearScale, ChartRectangleOptions } from 'chart.js'
 import IDurationPointDataType from '../datatypes/duration-point.datatype'
 import { DurationPoint, DateOrientedPointType } from '../datatypes/duration-point.datatype'
+import * as canvasHelper from '../helpers/canvas.helper'
 
 declare var require: any
 var tinycolor = require('tinycolor2')
-interface DurationBarData { centerX: number, centerY: number, width: number, height: number, value: number, valueRatio: number }
+interface DurationBarData { centerX: number, centerY: number, width: number, height: number, value: number, valueRatio: number, cutL: boolean, cutR: boolean }
 interface BackDropBarData { x: number, centerY: number, width: number, height: number }
 export function registerDurationChart() {
 
@@ -31,12 +32,23 @@ export function registerDurationChart() {
 
       durationBars.forEach(
         b => {
-          const easedWidth = b.width * Math.min(1, Math.max(0, (ease - 0.5)) * 2)
+          const easedWidth = (b.width - 1) * Math.min(1, Math.max(0, (ease - 0.5)) * 2)
           const color = tinycolor(rectangleOptions.backgroundColor.toString())
           const originalAlpha = color.getAlpha()
           color.setAlpha(originalAlpha * b.valueRatio)
           canvasContext.fillStyle = color.toRgbString()
-          canvasContext.fillRect(b.centerX - easedWidth * .5, b.centerY - b.height * .5, easedWidth, b.height)
+
+          var corners: any
+          if (b.cutL) {
+            corners = { lt: false, lb: false }
+          }
+
+          if (b.cutR) {
+            corners = { rt: false, rb: false }
+          }
+
+          canvasHelper.fillRoundRect(canvasContext, b.centerX, b.centerY, easedWidth, b.height, 3, corners)
+          //canvasContext.fillRect(b.centerX - easedWidth * .5, b.centerY - b.height * .5, easedWidth, b.height)
         }
       )
     },
@@ -48,8 +60,7 @@ export function registerDurationChart() {
       var max = 0
 
       const reverse = dateScale.options.ticks.reverse == true
-      if(reverse==true && dateScale.reverseHandled != true)
-      {
+      if (reverse == true && dateScale.reverseHandled != true) {
         dateScale.ticks.reverse()
         dateScale._ticks.reverse()
         dateScale.reverseHandled = true
@@ -78,10 +89,9 @@ export function registerDurationChart() {
       const backDropBarData: Array<BackDropBarData> = []
       data.forEach((d, i) => {
         var dateIndex
-        if(reverse==true)
-        {
-          dateIndex = data.length - d.dateIndex -1
-        }else dateIndex = d.dateIndex
+        if (reverse == true) {
+          dateIndex = data.length - d.dateIndex - 1
+        } else dateIndex = d.dateIndex
 
 
         const centerY = dateScale.getPixelForValue(null, dateIndex, 0)
@@ -91,7 +101,7 @@ export function registerDurationChart() {
             const fromX = timelineScale.getPixelForValue(durationElm.fromRatio, 0, 0)
             const toX = timelineScale.getPixelForValue(durationElm.toRatio, 0, 0)
             const centerX = (toX + fromX) * .5
-            durationBarData.push({ centerX: centerX, centerY: centerY, width: toX - fromX, height: datePixelHeight * 0.8, value: durationElm.value, valueRatio: durationElm.valueRatio })
+            durationBarData.push({ centerX: centerX, centerY: centerY, width: toX - fromX, height: datePixelHeight * 0.8, value: durationElm.value, valueRatio: durationElm.valueRatio, cutL: durationElm.cutL, cutR: durationElm.cutR })
           })
         }
       })
