@@ -80,7 +80,7 @@ export function registerDurationChart() {
         var dateIndex
         if(reverse==true)
         {
-          dateIndex = data.length - d.dateIndex
+          dateIndex = data.length - d.dateIndex -1
         }else dateIndex = d.dateIndex
 
 
