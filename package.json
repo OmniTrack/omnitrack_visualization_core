@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/chart.js": "^2.7.0",
     "@types/chartjs": "0.0.31",
+    "@types/gm": "^1.17.33",
     "chart.js": "^2.7.1",
     "gulp": "^3.9.1",
     "gulp-include": "^2.3.1",
