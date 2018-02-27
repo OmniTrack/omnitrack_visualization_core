@@ -1,5 +1,10 @@
 export function fillRoundRect(ctx:CanvasRenderingContext2D, centerX:number, centerY:number, w:number, h:number, radius:number , corners:{lt?:boolean, rt?:boolean, rb?:boolean, lb?:boolean}=null)
 {
+  if(w <= 0.00001 || h <= 0.00001 )
+  {
+    return
+  }
+
   const adjustedRadius = Math.min(radius, w/2, h/2)
   const horLineWidth = w - 2*adjustedRadius
   const verLineHeight = h - 2*adjustedRadius
