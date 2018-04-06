@@ -4,6 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
   entry: './visualization/visualization.ts',
   plugins: [ new UglifyJsPlugin() ],
+  mode: 'production',
   module: {
     rules: [
       {
